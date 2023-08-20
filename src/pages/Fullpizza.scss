@@ -1,3 +1,5 @@
+@import '../scss/variables';
+
 .root {
 	text-align: center;
 	align-items: center;
@@ -6,11 +8,11 @@
 		margin: 20px 0;
 		font-size: 30px;
 		font-weight: bold;
-		color: #fe5f1e;
+		color: $orange;
 	}
 	h4 {
 		font-size: 20px;
-		color: #fe5f1e;
+		color: $orange;
 		border-right: 1px solid;
 		width: 180px;
 	}

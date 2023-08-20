@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, FC } from 'react';
+import { useRef, useEffect, useCallback, FC, useState } from 'react';
 
 import qs from 'qs';
 
@@ -35,7 +35,7 @@ const Home: FC = () => {
 	const isSearch = useRef(false);
 	const isMounted = useRef(false);
 
-	const { categoryId, sort, currentPage, searchValue } =
+	const { categoryId, sort, currentPage, searchValue, itemsStartDiaposon } =
 		useSelector(selectFilter);
 
 	const { items, status } = useSelector(selectPizza);
@@ -78,7 +78,7 @@ const Home: FC = () => {
 			navigate(`?${querySrting}`);
 		}
 		isMounted.current = true;
-	}, [categoryId, sort.sortProperty, currentPage, navigate]);
+	}, [categoryId, sort.sortProperty, navigate]);
 
 	useEffect(() => {
 		if (window.location.search) {
@@ -99,13 +99,13 @@ const Home: FC = () => {
 			);
 			isSearch.current = true;
 		}
-	}, [categoryId, sort, searchValue, currentPage]);
+	}, [categoryId, sort, searchValue]);
 
 	useEffect(() => {
 		getPizzas();
 
 		isSearch.current = false;
-	}, [categoryId, sort, searchValue, currentPage]);
+	}, [categoryId, sort, searchValue]);
 
 	//! FIX type
 
@@ -115,6 +115,28 @@ const Home: FC = () => {
 			{...obj}
 		/>
 	));
+
+	const pizzasForPage = pizzas.filter(
+		(i, idx) => idx >= currentPage * 4 - 4 && idx < currentPage * 4,
+	);
+
+	console.log(pizzasForPage, currentPage * 4 - 4, currentPage * 4);
+
+	const filteredPizza = items
+		.filter((obj) => {
+			if (
+				searchValue &&
+				obj.title.toLowerCase().includes(searchValue.toLocaleLowerCase())
+			) {
+				return true;
+			}
+		})
+		.map((obj: any) => (
+			<PizzaBlock
+				key={obj.id}
+				{...obj}
+			/>
+		));
 
 	const skeleton = [...new Array(4)].map((_, idx) => <Skeleton key={idx} />);
 
@@ -132,19 +154,21 @@ const Home: FC = () => {
 			<h2 className='content__title'>Все пиццы</h2>
 			<div
 				className={
-					searchValue.length && !pizzas.length
+					searchValue.length && !filteredPizza.length
 						? 'content__items--not_found'
 						: 'content__items'
 				}>
 				{status === 'loading' ? (
 					skeleton
-				) : searchValue.length && !pizzas.length ? (
+				) : searchValue.length && !filteredPizza.length ? (
 					<NotFoundInner />
+				) : !searchValue ? (
+					pizzasForPage
 				) : (
-					pizzas
+					filteredPizza
 				)}
 			</div>
-			{pageCount > 1 && (
+			{pageCount > 1 && !searchValue && (
 				<Pagination
 					pageCount={pageCount}
 					currentPage={currentPage}

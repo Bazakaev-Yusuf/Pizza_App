@@ -2,9 +2,6 @@ import { FC, useEffect, useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 
-import emptyIcon from '../assets/img/empty-cart.png';
-import roflanPominki from '../assets/img/roflan-pominki.png';
-
 const CartEmpty: FC = () => {
 	const navigate = useNavigate();
 

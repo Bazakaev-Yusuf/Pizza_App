@@ -16,5 +16,6 @@ export interface I_Filter_Slice_State {
 	searchValue: string;
 	categoryId: number;
 	currentPage: number;
+	itemsStartDiaposon?: number;
 	sort: T_Sort;
 }

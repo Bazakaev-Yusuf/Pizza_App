@@ -1,15 +1,12 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 
 import ReactPaginate from 'react-paginate';
 
 import styles from './Pagination.module.scss';
 
-import { T_Pizza } from '../../redux/pizza/types';
-
 //! FIX type
 type TypePagination = {
 	pageCount: number;
-
 	currentPage: number;
 	onChangePage: (page: number) => void;
 };

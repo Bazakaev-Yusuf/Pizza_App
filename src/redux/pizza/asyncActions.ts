@@ -11,12 +11,12 @@ export const fetchPizzas = createAsyncThunk<T_Pizza[], T_Search_Pizza_Params>(
 			`https://646a742d70b2302c85e5e9d1.mockapi.io/Pizzas_list`,
 			{
 				params: {
-					page: currentPage,
-					limit: 4,
+					// page: currentPage,
+					// limit: 4,
 					category: categoryId,
 					sortBy: sortProperty,
 					order,
-					title: search,
+					// search,
 				},
 			},
 		);

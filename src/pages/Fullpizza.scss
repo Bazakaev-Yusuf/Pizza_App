@@ -25,6 +25,8 @@
 .pizza_img {
 	margin: 20px auto;
 	width: 400px;
+	aspect-ratio: 1/1;
+	object-fit: cover;
 	border-radius: 25%;
 	animation: spin 40s linear 0s infinite normal forwards;
 }

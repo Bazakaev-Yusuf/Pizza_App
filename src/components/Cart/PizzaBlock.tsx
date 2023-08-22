@@ -8,7 +8,7 @@ import { T_Pizza } from '../../redux/pizza/types';
 import { selectCartItemById } from '../../redux/cart/selectors';
 import { addItem } from '../../redux/cart/slice';
 
-const typeNames = ['тонкое', 'традиционное'];
+const typeNames = ['тонкое', 'традиционное', 'WeeWee', 'Slaves'];
 
 const PizzaBlock: FC<T_Pizza> = ({
 	id,

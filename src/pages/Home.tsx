@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, FC, useState } from 'react';
+import { useRef, useEffect, useCallback, FC } from 'react';
 
 import qs from 'qs';
 
@@ -119,8 +119,6 @@ const Home: FC = () => {
 	const pizzasForPage = pizzas.filter(
 		(i, idx) => idx >= currentPage * 4 - 4 && idx < currentPage * 4,
 	);
-
-	console.log(pizzasForPage, currentPage * 4 - 4, currentPage * 4);
 
 	const filteredPizza = items
 		.filter((obj) => {

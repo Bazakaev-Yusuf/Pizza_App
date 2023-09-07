@@ -2,7 +2,7 @@ import { useState, useEffect, FC } from 'react';
 
 import axios from 'axios';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import './Fullpizza.scss';
 
@@ -101,6 +101,11 @@ const FullSizePizza: FC = () => {
 					</p>
 				</div>
 			</div>
+			<Link
+				to='/'
+				className='button button--black'>
+				<span>Вернуться назад</span>
+			</Link>
 		</div>
 	);
 };

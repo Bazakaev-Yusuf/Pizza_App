@@ -8,11 +8,6 @@ import { Link } from 'react-router-dom';
 const NotFoundInner: FC = () => {
 	return (
 		<div className={styles.root}>
-			{/* <h1 className={styles.root}>
-				<span>&#129300;</span>
-				<br />
-				Ничего не найдено
-			</h1> */}
 			<Link to={'/'}>
 				<img
 					className={styles.error_btn}

@@ -4,6 +4,11 @@
 	text-align: center;
 	align-items: center;
 
+	a {
+		background-color: $orange;
+		font-weight: 700;
+	}
+
 	h2 {
 		margin: 20px 0;
 		font-size: 30px;
@@ -34,7 +39,7 @@
 .table {
 	padding: 15px;
 	width: 1000px;
-	margin: 0 auto;
+	margin: 20px auto;
 }
 
 .table-column {

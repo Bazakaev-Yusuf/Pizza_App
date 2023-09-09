@@ -35,20 +35,23 @@ const Home: FC = () => {
 	const isSearch = useRef(false);
 	const isMounted = useRef(false);
 
-	const { categoryId, sort, currentPage, searchValue, itemsStartDiaposon } =
+	const { categoryId, sort, currentPage, searchValue } =
 		useSelector(selectFilter);
 
 	const { items, status } = useSelector(selectPizza);
 
-	const onChangeCategory = useCallback((idx: number) => {
-		dispatch(setCategoryId(idx));
-	}, []);
+	const onChangeCategory = useCallback(
+		(idx: number) => {
+			dispatch(setCategoryId(idx));
+		},
+		[dispatch],
+	);
 
 	const onChangePage = (page: number) => {
 		dispatch(setCurrentPage(page));
 	};
 
-	const getPizzas = () => {
+	const getPizzas = useCallback(() => {
 		const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
 
 		const sortBy = sort.sortProperty.replace('-', '');
@@ -66,7 +69,8 @@ const Home: FC = () => {
 				currentPage: String(currentPage),
 			}),
 		);
-	};
+		// eslint-disable-next-line
+	}, [sort.sortProperty, categoryId, dispatch]);
 
 	useEffect(() => {
 		if (isMounted.current) {
@@ -78,7 +82,7 @@ const Home: FC = () => {
 			navigate(`?${querySrting}`);
 		}
 		isMounted.current = true;
-	}, [categoryId, sort.sortProperty, navigate]);
+	}, [categoryId, sort.sortProperty, navigate, dispatch]);
 
 	useEffect(() => {
 		if (window.location.search) {
@@ -99,13 +103,13 @@ const Home: FC = () => {
 			);
 			isSearch.current = true;
 		}
-	}, [categoryId, sort, searchValue]);
+	}, [categoryId, sort, searchValue, dispatch]);
 
 	useEffect(() => {
 		getPizzas();
 
 		isSearch.current = false;
-	}, [categoryId, sort, searchValue]);
+	}, [getPizzas]);
 
 	//! FIX type
 
@@ -116,6 +120,7 @@ const Home: FC = () => {
 		/>
 	));
 
+	// eslint-disable-next-line
 	const pizzasForPage = pizzas.filter(
 		(i, idx) => idx >= currentPage * 4 - 4 && idx < currentPage * 4,
 	);

@@ -49,7 +49,7 @@ const FullSizePizza: FC = () => {
 		}
 
 		fetchFullPizza();
-	}, []);
+	}, [id, navigate]);
 
 	if (!pizza) {
 		return (

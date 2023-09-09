@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CartItem from '../components/Cart/CartItem';
 import CartEmpty from '../components/CartEmpty';
 import { selectCart } from '../redux/cart/selectors';

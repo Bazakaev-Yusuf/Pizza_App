@@ -45,6 +45,7 @@ const App: FC = () => {
 							fallback={
 								<img
 									src={fallbackImg}
+									alt='Pizza_cart'
 									className='fallback-img'
 								/>
 							}>

@@ -82,7 +82,7 @@ const Home: FC = () => {
 			navigate(`?${querySrting}`);
 		}
 		isMounted.current = true;
-	}, [categoryId, sort.sortProperty, navigate, dispatch]);
+	}, [categoryId, sort.sortProperty, currentPage, navigate, dispatch]);
 
 	useEffect(() => {
 		if (window.location.search) {
@@ -133,6 +133,8 @@ const Home: FC = () => {
 			) {
 				return true;
 			}
+
+			return false;
 		})
 		.map((obj: any) => (
 			<PizzaBlock

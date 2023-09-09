@@ -19,7 +19,7 @@ function Search() {
 	const updateSearchValue = useCallback(
 		debounce((str: string) => {
 			dispatch(setSearchValue(str));
-		}, 350),
+		}, 500),
 		[],
 	);
 

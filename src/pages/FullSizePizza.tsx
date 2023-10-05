@@ -54,7 +54,9 @@ const FullSizePizza: FC = () => {
 	if (!pizza) {
 		return (
 			<div className='container'>
-				<h1>Загрузка...</h1>
+				<h1 style={{ textAlign: 'center', margin: '50px 0' }}>
+					Загрузка...
+				</h1>
 			</div>
 		);
 	}

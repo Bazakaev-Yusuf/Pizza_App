@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import '../scss/cart.scss';
 
 import { useSelector, useDispatch } from 'react-redux';
 

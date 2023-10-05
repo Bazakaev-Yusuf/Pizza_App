@@ -38,24 +38,6 @@ const pizzaSlice = createSlice({
 			state.items = [];
 		});
 	},
-
-	//* Reux RTK предупреждал что данный способ будет удален в версии 2.0 и он считается утаревшим/устаривающим
-	// {
-	// 	[fetchPizzas.pending]: (state) => {
-	// 		state.status = 'loading';
-	// 		state.items = [];
-	// 	},
-
-	// 	[fetchPizzas.fulfilled]: (state, { payload }) => {
-	// 		state.items = payload;
-	// 		state.status = 'success';
-	// 	},
-
-	// 	[fetchPizzas.rejected]: (state) => {
-	// 		state.status = 'error';
-	// 		state.items = [];
-	// 	},
-	// },
 });
 
 export const { setItems } = pizzaSlice.actions;

@@ -1,4 +1,6 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+
+import debounce from 'lodash.debounce';
 
 import { useAppDispatch } from '../../redux/store';
 import { plusItem, minusItem, removeItem } from '../../redux/cart/slice';
@@ -13,6 +15,8 @@ const CartItem: FC<T_CartItems> = ({
 	type,
 	size,
 }) => {
+	const [removeAnimated, setRemoveAnimated] = useState(false);
+
 	const dispatch = useAppDispatch();
 
 	const onclickPlus = () => {
@@ -23,12 +27,16 @@ const CartItem: FC<T_CartItems> = ({
 		dispatch(minusItem({ id } as T_CartItems));
 	};
 
-	const onclickRemove = () => {
+	const onclickRemove = debounce((id: string) => {
 		dispatch(removeItem(id));
-	};
+	}, 250);
+
 	return (
 		<>
-			<div className='cart__item'>
+			<div
+				className={
+					removeAnimated ? 'cart__item cart__item__animated' : 'cart__item'
+				}>
 				<div className='cart__item-img'>
 					<img
 						className='pizza-block__image'
@@ -87,9 +95,12 @@ const CartItem: FC<T_CartItems> = ({
 					<b>{price * count} ₽</b>
 				</div>
 				<div className='cart__item-remove'>
-					<div
-						onClick={onclickRemove}
-						className='button button--outline button--circle'>
+					<button
+						onClick={() => {
+							onclickRemove(id);
+							setRemoveAnimated(true);
+						}}
+						className={'button button--outline button--circle'}>
 						<svg
 							width='10'
 							height='10'
@@ -103,7 +114,7 @@ const CartItem: FC<T_CartItems> = ({
 								d='M5.75998 5.92001L3.83998 5.92001L0.959977 5.92001C0.429817 5.92001 -2.29533e-05 5.49017 -2.29301e-05 4.96001C-2.2907e-05 4.42985 0.429817 4.00001 0.959977 4.00001L3.83998 4L5.75998 4.00001L8.63998 4.00001C9.17014 4.00001 9.59998 4.42985 9.59998 4.96001C9.59998 5.49017 9.17014 5.92001 8.63998 5.92001L5.75998 5.92001Z'
 								fill='#EB5A1E'></path>
 						</svg>
-					</div>
+					</button>
 				</div>
 			</div>
 		</>
